@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
   double t1, t2; 
   
   /* variables for task 1 */
-  unsigned int M = 10000;
+  unsigned int M = 1000;
   unsigned int N = 256*1024; 
   unsigned int i;
 	
@@ -85,7 +85,7 @@ int main (int argc, char *argv[])
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
    * otherwise compiler might optimise away the code */
-  fprintf(stderr, "sum: %d\n", sum/M); 
+ fprintf(stderr, "sum: %d\n", sum/M); 
   /* free memory; examples, adjust for task */
   //free(a);
 

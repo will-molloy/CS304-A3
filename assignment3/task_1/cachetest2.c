@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
   double t1, t2; 
   
   /* variables for task 1 */
-  unsigned int M = 10000;
+  unsigned int M = 1000;
   unsigned int N = 256*1024; 
   unsigned int i;
 	

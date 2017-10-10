@@ -28,12 +28,12 @@ cmdLinear = "./cachetest1"
 cmdRandom :: FilePath
 cmdRandom = "./cachetest2"
  
-range = [11..22] -- (2^11, 2048 -> ..)
+range = [11..24] -- (2^11, 2048 -> ..)
  
 putHline = putStrLn "\\hline"
  
 tabuStart = "\\begin{tabu} to 1\\linewidth { | X[c] | X[c] | X[c] | X[c] | X[c] }\n" ++
-    "N & Size of \\texttt{a} & time per iteration/ns & time per iteration/ns & Difference (case2-case1) \\% \\\\ \n \\hline \n " ++
+    "N & Size of \\texttt{a} & time per iteration/ns & time per iteration/ns & Difference \\% \\\\ \n \\hline \n " ++
     " & & case 1 & case 2 & \\\\\n"
  
 tabuEnd = "\\end{tabu}"
