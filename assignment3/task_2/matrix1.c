@@ -28,14 +28,16 @@ int main (int argc, char *argv[])
 {
   double t1, t2; 
   
-  /* variables for task 1 */
   unsigned int M = 1000;
   unsigned int N = 256*1024; 
-  unsigned int i;
+  unsigned int i, r, j;
+  unsigned int size = 1000;
 	
   /* declare variables; examples, adjust for task */
-	int *a;
-	//double  a[100];
+	//int *a;
+	// represents 2D arrays
+	double *a;
+	double *b;
  
   
   /* parameter parsing task 1 */
@@ -57,44 +59,43 @@ int main (int argc, char *argv[])
 
     
   /* allocate memory for arrays; examples, adjust for task */
-	a = malloc (N * sizeof(int));
-    int *b;
-    b = malloc (N * sizeof(int)); // helper array - case 1: not shuffled.
-    
+	 a = malloc (N * sizeof(double));
+	 b = malloc (N * sizeof(double));
+
 	 /* initialise arrray elements */
-   for (int i = 0; i < N; i++){
-        a[i] = 1;
+    for (int i = 0; i < N; i++){
+        a[i] = i;
         b[i] = i;
-   }  
-    /* case2: Shuffle b */
-     for (int n = 0; n < N - 1; n++) {
-          size_t j = n + rand() / (RAND_MAX / (N - n) + 1);
-          int t = b[j];
-          b[j] = b[i];
-          b[i] = t;
-     }
-   
+    }
 	 
   t1 = getTime();
+  double c[1000];
   /* code to be measured goes here */
   /***************************************/
-    unsigned int sum = 0;
-    for (int m = 0; m < M; m++){
-        for (int n = 0; n < N; n++){
-              sum += a[b[n]];
-        }    
+    for (r = 0; r < M; r++){ // Repeats
+    for (i = 0; i < size; i++){
+      for (j = 0; j < size; j++){
+       c[j*size + i] = a[j*size + i] *  b[j + i*size];
+      }
     }
+  }  
+	
+	
+	
   /***************************************/
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("%6.10f \n",(t2 - t1));
+  printf("time: %6.2f secs\n",(t2 - t1));
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
    * otherwise compiler might optimise away the code */
-   fprintf(stderr, "sum: %d\n", sum); 
+  for (i = 0; i < size*size; i++){
+    printf("c[%d]: %d", i, c[i]);
+  }
+  
   /* free memory; examples, adjust for task */
-  free(a);
+  //free(a);
 
   return 0;  
 }

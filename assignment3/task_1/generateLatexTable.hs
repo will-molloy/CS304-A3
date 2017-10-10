@@ -28,13 +28,12 @@ cmdLinear = "./cachetest1"
 cmdRandom :: FilePath
 cmdRandom = "./cachetest2"
  
-range = [11..24] -- (2^11, 2048 -> ..)
+range = [11..25] -- 2^11 (2048 much less than L1 cache) -> 2^25 (33554432 4x L3 cache)
  
 putHline = putStrLn "\\hline"
  
-tabuStart = "\\begin{tabu} to 1\\linewidth { | X[c] | X[c] | X[c] | X[c] | X[c] }\n" ++
+tabuStart = "\\begin{tabu} to 1\\linewidth { | X[c] | X[c] | X[c] | x[c] | X[c] }\n" ++
     "N & Size of \\texttt{a} & time per iteration/ns & time per iteration/ns & Difference \\% \\\\ \n \\hline \n " ++
     " & & case 1 & case 2 & \\\\\n"
  
 tabuEnd = "\\end{tabu}"
-

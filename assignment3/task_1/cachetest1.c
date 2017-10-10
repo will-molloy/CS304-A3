@@ -81,13 +81,13 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("%6.10f \n",(t2 - t1)/M);
+  printf("%6.10f \n",(t2 - t1));
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
    * otherwise compiler might optimise away the code */
- fprintf(stderr, "sum: %d\n", sum/M); 
+ fprintf(stderr, "sum: %d\n", sum); 
   /* free memory; examples, adjust for task */
-  //free(a);
+  free(a);
 
   return 0;  
 }
