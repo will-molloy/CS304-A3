@@ -29,13 +29,13 @@ int main (int argc, char *argv[])
   double t1, t2; 
   
   /* variables for task 1 */
-  unsigned int M = 1000;
+  unsigned int M = 10000;
   unsigned int N = 256*1024; 
   unsigned int i;
 	
   /* declare variables; examples, adjust for task */
-	//int *a;
-	double  a[100];
+	int *a;
+	//double  a[100];
  
   
   /* parameter parsing task 1 */
@@ -57,27 +57,42 @@ int main (int argc, char *argv[])
 
     
   /* allocate memory for arrays; examples, adjust for task */
-	 //a = malloc (N * sizeof(int));
-
+	a = malloc (N * sizeof(int));
+    int *b;
+    b = malloc (N * sizeof(int)); // helper array - case 1: not shuffled.
+    
 	 /* initialise arrray elements */
- 
+   for (int i = 0; i < N; i++){
+        a[i] = 1;
+        b[i] = i;
+   }  
+    /* case2: Shuffle b */
+     for (int n = 0; n < N - 1; n++) {
+          size_t j = n + rand() / (RAND_MAX / (N - n) + 1);
+          int t = b[j];
+          b[j] = b[i];
+          b[i] = t;
+     }
+   
 	 
   t1 = getTime();
   /* code to be measured goes here */
   /***************************************/
-	
-	
-	
-	
+    unsigned int sum = 0;
+    for (int m = 0; m < M; m++){
+        for (int n = 0; n < N; n++){
+              sum += a[b[n]];
+        }    
+    }
   /***************************************/
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("time: %6.2f secs\n",(t2 - t1));
+  printf("%6.10f \n",(t2 - t1)/M);
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
    * otherwise compiler might optimise away the code */
-  
+   fprintf(stderr, "sum: %d\n", sum/M); 
   /* free memory; examples, adjust for task */
   //free(a);
 

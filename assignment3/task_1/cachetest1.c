@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
   double t1, t2; 
   
   /* variables for task 1 */
-  unsigned int M = 1000;
+  unsigned int M = 10000;
   unsigned int N = 256*1024; 
   unsigned int i;
 	
@@ -63,31 +63,29 @@ int main (int argc, char *argv[])
     
 	 /* initialise arrray elements */
    for (int i = 0; i < N; i++){
-        a[i] = i;
+        a[i] = 1;
         b[i] = i;
    }  
-    // Shuffle b 
- 
+    /* case1: b remains linear */
 	 
   t1 = getTime();
   /* code to be measured goes here */
   /***************************************/
-    int sum = 0;
+    unsigned int sum = 0;
     for (int m = 0; m < M; m++){
         for (int n = 0; n < N; n++){
               sum += a[b[n]];
         }    
     }
-	sum /= M*N;
   /***************************************/
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("time: %6.2f secs\n",(t2 - t1));
+  printf("%6.10f \n",(t2 - t1)/M);
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
    * otherwise compiler might optimise away the code */
-  printf("sum: %d", &sum); 
+  fprintf(stderr, "sum: %d\n", sum/M); 
   /* free memory; examples, adjust for task */
   //free(a);
 
