@@ -53,10 +53,20 @@ int main (int argc, char *argv[])
 	t1 = getTime();
 	/* code to be measured goes here */
 	/***************************************/
+	double **temp = malloc(N * sizeof(double)); // temp matrix, tranpose of b
+	for (int i = 0; i < N; i++){
+		temp[i] = (double *)malloc(N * sizeof(double));
+	}
+	for (int i = 0; i < N; i++){
+		for (int j = 0; j < N; j++){
+			temp[i][j] = b[j][i];
+		}
+	}	
+
 	for (int i = 0; i < N; i++){
 		for (int j = 0; j < N; j++){
 			for (int k = 0; k < N; k++){
-				c[i][j] += a[i][k] * b[k][j];
+				c[i][j] += a[i][k] * temp[j][k]; // already tranposed 
 			}
 		}
 	}
@@ -65,7 +75,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
 	/* output; examples, adjust for task */
-	printf("matrix1 - time: %6.2f secs\n",(t2 - t1));
+	printf("matrix2 - time: %6.2f secs\n",(t2 - t1));
 
 	/* IMPORTANT: also print the result of the code, e.g. the sum, 
 	 * otherwise compiler might optimise away the code */
@@ -74,8 +84,8 @@ int main (int argc, char *argv[])
 			fprintf(stderr, "c[%d][%d]= %lf \n", i, j, c[i][j]);
 		}
 	}
-
 	freeArr(a, N);
+	freeArr(b, N);
 	freeArr(c, N);
 
 	return 0;  

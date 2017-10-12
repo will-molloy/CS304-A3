@@ -65,7 +65,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
 	/* output; examples, adjust for task */
-	printf("matrix1 - time: %6.2f secs\n",(t2 - t1));
+	printf("matrix3 - time: %6.2f secs\n",(t2 - t1));
 
 	/* IMPORTANT: also print the result of the code, e.g. the sum, 
 	 * otherwise compiler might optimise away the code */

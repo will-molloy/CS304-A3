@@ -9,8 +9,7 @@ cachetest2: cachetest2.c
 	gcc $(OPT) cachetest2.c -o cachetest2
 
 run: default
-	runhaskell generateLatexTable.hs
-
+	runhaskell generateLatexTable.hs 2>/dev/null
 clean:
 	rm -f *.o
 	rm -f cachetest1
