@@ -16,11 +16,11 @@ line n = do
     putStr $ formatLine tLinear tRandom
     putStrLn "\\\\"
     where theArgs = "--array_size" : show n : []
-          formatLine a b = intercalate " & " [show n, show $ n * 4, clean a, clean b, show $ diff a b]
+          formatLine a b = intercalate " & " [show n, show $ n * 4, clean a, clean b] --,show $ diff a b]
           clean = stripZero . filter rmDot
           rmDot x = x /= '.'
           stripZero = dropWhile (=='0')
-          diff a b = (fromIntegral (read $ clean b :: Integer) - fromIntegral (read $ clean a :: Integer)) / fromIntegral (read $ clean b :: Integer)
+       --   diff a b = (fromIntegral (read $ clean b :: Integer) - fromIntegral (read $ clean a :: Integer)) / fromIntegral (read $ clean b :: Integer)
  
 cmdLinear :: FilePath
 cmdLinear = "./cachetest1"
@@ -28,7 +28,7 @@ cmdLinear = "./cachetest1"
 cmdRandom :: FilePath
 cmdRandom = "./cachetest2"
  
-range = [11..25] -- 2^11 (2048 much less than L1 cache) -> 2^25 (33554432 4x L3 cache)
+range = [11..24] -- 2^11 (2048 < L1 cache of 32k) -> 2^24 (16M > L3 cache of 6M)
  
 putHline = putStrLn "\\hline"
  
