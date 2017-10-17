@@ -1,4 +1,4 @@
- OPT = -O1 				
+OPT = -O1 				
 
 default: cachetest1 cachetest2
 
@@ -9,7 +9,7 @@ cachetest2: cachetest2.c
 	gcc $(OPT) cachetest2.c -o cachetest2
 
 run: default
-	runhaskell generateLatexTable.hs 2>/dev/null
+	runhaskell RunCacheTests.hs > task_1.dat
 clean:
 	rm -f *.o
 	rm -f cachetest1

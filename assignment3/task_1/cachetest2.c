@@ -5,16 +5,11 @@
 #include <time.h>
 
 double getTime(){
-	struct timeval t;
-	double sec, msec;
-
-	while (gettimeofday(&t, NULL) != 0);
-	sec = t.tv_sec;
-	msec = t.tv_usec;
-
-	sec = sec + msec/1000000.0;
-
-	return sec;
+	struct timespec t;
+	
+	clock_gettime(CLOCK_MONOTONIC, &t);
+	
+	return t.tv_sec + 1.0e-9*t.tv_nsec;
 }
 
 /* for task 1 only */
@@ -29,8 +24,8 @@ int main (int argc, char *argv[])
 	double t1, t2; 
 
 	/* variables for task 1 */
-	unsigned int M = 1000;
-	unsigned int N = 256*1024; 
+	unsigned int M;
+	unsigned int N; 
 	unsigned int i;
 
 	/* declare variables; examples, adjust for task */
@@ -52,6 +47,8 @@ int main (int argc, char *argv[])
 				usage();
 		} else usage();
 	}
+	if (M < 1 || N < 1)
+		usage();
 
 
 	/* allocate memory for arrays; examples, adjust for task */
@@ -85,7 +82,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
 	/* output; examples, adjust for task */
-	printf("%6.12f \n", (t2 - t1)/(M*N)); // Haskell script interprets 12 DP as 10^(-12) i.e. pico seconds
+	printf("%6.9f \n", (t2 - t1)/(M*N)); // nano seconds
 
 	/* IMPORTANT: also print the result of the code, e.g. the sum, 
 	 * otherwise compiler might optimise away the code */
