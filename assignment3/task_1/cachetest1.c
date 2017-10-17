@@ -79,7 +79,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
 	/* output; examples, adjust for task */
-	printf("%6.12f \n",(t2 - t1)/(M*N));
+	printf("%6.12f \n", (t2 - t1)/(M*N)); // Haskell script interprets 12 DP as 10^(-12) i.e. pico seconds
 
 	/* IMPORTANT: also print the result of the code, e.g. the sum, 
 	 * otherwise compiler might optimise away the code */
